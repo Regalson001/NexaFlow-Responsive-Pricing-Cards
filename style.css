@@ -1,0 +1,836 @@
+
+/* =========================================
+   NEXAFLOW - RESPONSIVE PRICING CARDS
+   Author: Stephen Oyugi
+   Technologies: HTML5 + CSS3
+========================================= */
+
+
+/* 1. CSS RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #ffffff;
+    color: #182033;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+    width: min(1160px, 90%);
+    margin: 0 auto;
+}
+
+
+/* 2. DESIGN VARIABLES */
+
+:root {
+    --primary: #6754e8;
+    --primary-dark: #5140c9;
+    --primary-light: #f0edff;
+
+    --dark: #182033;
+    --muted: #737d91;
+
+    --white: #ffffff;
+    --background: #f8f9fd;
+    --border: #e8eaf1;
+
+    --success: #159b70;
+
+    --shadow:
+        0 15px 45px rgba(28, 34, 62, 0.07);
+
+    --radius: 18px;
+}
+
+
+/* 3. HEADER AND NAVIGATION */
+
+.site-header {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(15px);
+}
+
+.navbar {
+    min-height: 82px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Manrope", sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo-icon {
+    width: 39px;
+    height: 39px;
+    display: grid;
+    place-items: center;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 12px;
+    font-size: 21px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-button {
+    padding: 11px 19px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.nav-button:hover {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.nav-button span {
+    margin-left: 7px;
+}
+
+
+/* 4. HERO SECTION */
+
+.hero {
+    padding-top: 95px;
+    padding-bottom: 65px;
+    text-align: center;
+}
+
+.announcement {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 9px 17px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.announcement-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+.hero h1 {
+    max-width: 850px;
+    margin: 0 auto;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(38px, 6vw, 65px);
+    line-height: 1.13;
+    font-weight: 800;
+    letter-spacing: -3px;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--primary);
+}
+
+.hero-description {
+    max-width: 620px;
+    margin: 25px auto 23px;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.billing-note {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: #667085;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.note-divider {
+    color: var(--primary);
+}
+
+
+/* 5. SECTION HEADINGS */
+
+.section-heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 48px;
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(29px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+}
+
+.section-heading > p:last-child {
+    color: var(--muted);
+    margin-top: 13px;
+    font-size: 15px;
+}
+
+
+/* 6. PRICING SECTION */
+
+.pricing-section {
+    padding-top: 20px;
+    padding-bottom: 105px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 24px;
+}
+
+.pricing-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 34px 27px;
+    box-shadow: var(--shadow);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 55px rgba(28, 34, 62, 0.12);
+    border-color: #d5cef9;
+}
+
+.featured-card {
+    border: 2px solid var(--primary);
+    box-shadow: 0 20px 55px rgba(103, 84, 232, 0.13);
+}
+
+.featured-card:hover {
+    border-color: var(--primary-dark);
+}
+
+
+/* 7. POPULAR BADGE */
+
+.popular-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: var(--primary);
+    color: var(--white);
+    padding: 7px 18px;
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+
+/* 8. PLAN HEADERS */
+
+.plan-header {
+    min-height: 125px;
+}
+
+.plan-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 19px;
+    margin-bottom: 17px;
+}
+
+.starter-icon {
+    background: #eaf2ff;
+    color: #3978d8;
+}
+
+.professional-icon {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.enterprise-icon {
+    background: #e8f8f2;
+    color: #159b70;
+}
+
+.plan-header h3 {
+    font-family: "Manrope", sans-serif;
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.plan-description {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* 9. PRICE DISPLAY */
+
+.price {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+    margin-top: 22px;
+}
+
+.currency {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.amount {
+    font-family: "Manrope", sans-serif;
+    font-size: 53px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.period {
+    color: var(--muted);
+    font-size: 14px;
+    margin-left: 3px;
+}
+
+.billing-caption {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 9px;
+    margin-bottom: 23px;
+}
+
+
+/* 10. PLAN BUTTONS */
+
+.plan-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 12px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 800;
+    transition: 0.3s ease;
+}
+
+.secondary-button {
+    border: 1px solid #dfe2ed;
+    color: var(--dark);
+    background: var(--white);
+}
+
+.secondary-button:hover {
+    background: #f4f2ff;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.primary-button {
+    background: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--primary);
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    box-shadow: 0 8px 20px rgba(103, 84, 232, 0.25);
+}
+
+.plan-button span {
+    font-size: 17px;
+}
+
+
+/* 11. FEATURE LISTS */
+
+.feature-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 27px 0 22px;
+}
+
+.feature-title {
+    color: #8b93a5;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 19px;
+}
+
+.feature-list {
+    list-style: none;
+    display: grid;
+    gap: 15px;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    color: #505a70;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.feature-list li span {
+    color: var(--success);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+
+/* 12. PRICING DISCLAIMER */
+
+.pricing-disclaimer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 35px;
+}
+
+
+/* 13. BENEFITS SECTION */
+
+.benefits-section {
+    background: var(--background);
+    padding: 100px 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.benefit-card {
+    background: var(--white);
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    transition: 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.benefit-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    margin-bottom: 9px;
+}
+
+.benefit-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* 14. FAQ SECTION */
+
+.faq-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 22px 5px;
+}
+
+.faq-item summary {
+    position: relative;
+    cursor: pointer;
+    list-style: none;
+    font-size: 15px;
+    font-weight: 700;
+    padding-right: 35px;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 5px;
+    top: -5px;
+    color: var(--primary);
+    font-size: 24px;
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
+.faq-item p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 15px;
+    max-width: 650px;
+}
+
+
+/* 15. CONTACT SECTION */
+
+.contact-section {
+    padding-top: 65px;
+    padding-bottom: 65px;
+    margin-bottom: 85px;
+    border-radius: 22px;
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(255,255,255,0.16),
+            transparent 30%
+        ),
+        linear-gradient(120deg, #5140c9, #7562ed);
+    color: var(--white);
+    text-align: center;
+}
+
+.contact-content {
+    max-width: 620px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.contact-content .eyebrow {
+    color: #e1dcff;
+}
+
+.contact-content h2 {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.contact-content > p:not(.eyebrow) {
+    color: #e6e2ff;
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 23px;
+    background: var(--white);
+    color: var(--primary);
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 800;
+    transition: 0.3s ease;
+}
+
+.contact-button:hover {
+    transform: translateY(-3px);
+    background: #f0edff;
+}
+
+
+/* 16. FOOTER */
+
+.site-footer {
+    border-top: 1px solid var(--border);
+    padding: 30px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-logo {
+    font-size: 19px;
+}
+
+.footer-logo .logo-icon {
+    width: 33px;
+    height: 33px;
+    font-size: 17px;
+}
+
+.footer-content p {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+.back-to-top {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+
+/* 17. FOCUS ACCESSIBILITY */
+
+a:focus-visible,
+summary:focus-visible {
+    outline: 3px solid #a89cff;
+    outline-offset: 4px;
+    border-radius: 5px;
+}
+
+
+/* 18. TABLET RESPONSIVENESS */
+
+@media (max-width: 950px) {
+
+    .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 750px;
+        margin: auto;
+    }
+
+    .featured-card {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* 19. MOBILE RESPONSIVENESS */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        min-height: 70px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-button {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 70px;
+        padding-bottom: 50px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1.8px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .billing-note {
+        gap: 7px;
+        font-size: 11px;
+    }
+
+    .pricing-section {
+        padding-bottom: 75px;
+    }
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 430px;
+    }
+
+    .featured-card {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .pricing-card {
+        padding: 30px 24px;
+    }
+
+    .benefits-section,
+    .faq-section {
+        padding-top: 75px;
+        padding-bottom: 75px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section {
+        padding-top: 55px;
+        padding-bottom: 55px;
+        margin-bottom: 55px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+}
+
+
+/* 20. SMALL MOBILE DEVICES */
+
+@media (max-width: 380px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .amount {
+        font-size: 46px;
+    }
+
+    .pricing-card {
+        padding: 27px 20px;
+    }
+
+}
+
+
+/* 21. REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+}
